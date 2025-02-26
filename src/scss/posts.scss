@@ -1,0 +1,60 @@
+@use "./utils.scss" as u;
+
+.Posts {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  @include u.breakpoint("medium") {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include u.breakpoint("large") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.Post {
+  counter-increment: post-number;
+  display: grid;
+  grid-template-columns: 10rem auto;
+  grid-template-areas:
+    "image number"
+    "image title"
+    "image resume";
+  column-gap: 2.4rem;
+
+  &__image {
+    grid-area: image;
+    aspect-ratio: 100 / 127;
+  }
+
+  &::before {
+    grid-area: number;
+    content: counter(post-number);
+    @include u.text-heading-m();
+    color: var(--light-vermillion);
+  }
+
+  &__title {
+    grid-area: title;
+    cursor: pointer;
+    @include u.text-heading-xs();
+    color: var(--dark-space-blue);
+    margin-top: 1.2rem;
+    margin-bottom: 0.9rem;
+    transition:
+      color 0.3s ease-out;
+
+    &:hover {
+      color: var(--light-vermillion);
+    }
+  }
+
+  &__resume {
+    grid-area: resume;
+    @include u.text-body();
+    color: var(--gunmetal);
+  }
+}

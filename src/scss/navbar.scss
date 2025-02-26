@@ -1,0 +1,129 @@
+@use "./utils.scss" as u;
+
+.Navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @include u.breakpoint("medium") {
+    align-items: center;
+  }
+
+  &__offcanvas {
+    display: none;
+
+    @include u.breakpoint("medium") {
+      display: none !important;
+    }
+
+    &--active {
+      display: block;
+      position: absolute;
+      top: 0rem;
+      left: 0rem;
+      right: 0rem;
+      bottom: 0rem;
+      background-color: var(--dark-space-blue);
+      opacity: 0.5;
+    }
+  }
+
+  &__links-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--almost-white);
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform 0.3s ease-out,
+      padding 0.3s ease-out,
+      gap 0.3s ease-out,
+      visibility 0.3s ease-out
+      height 0.3s ease-out;
+
+    @include u.breakpoint("medium") {
+      visibility: visible;
+      position: relative;
+      transform: translateX(0%);
+
+      &--open {
+        padding: 0rem !important;
+        gap: 0rem !important;
+        height: fit-content !important;
+        overflow-y: hidden !important;
+      }
+    }
+
+    &--open {
+      overflow-y: scroll;
+      visibility: visible;
+      padding: 2.73rem 2.08rem 30.9rem 2.4rem;
+      gap: 8.63rem;
+      height: 100vh;
+      transform: translateX(0%);
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    @include u.breakpoint("medium") {
+      flex-direction: row;
+      gap: 4rem;
+    }
+  }
+
+  &__link {
+    color: var(--dark-space-blue);
+    list-style: none;
+    cursor: pointer;
+    transition: color 0.3s ease-out;
+    @include u.text-link();
+
+    &:hover {
+      color: var(--light-vermillion);
+    }
+
+    @include u.breakpoint(medium) {
+      color: var(--gunmetal);
+    }
+  }
+
+  &__open-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    @include u.breakpoint("medium") {
+      display: none;
+    }
+  }
+
+  &__close-button {
+    margin-left: 18.08rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+
+    @include u.breakpoint("medium") {
+      display: none;
+    }
+  }
+
+  &__logo {
+    aspect-ratio: 13 / 8;
+    transition: width 0.3s ease-out;
+
+    @include u.breakpoint("medium") {
+      width: 6.409rem;
+    }
+  }
+}

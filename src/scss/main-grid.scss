@@ -1,0 +1,47 @@
+@use "./utils.scss" as u;
+
+.Main-grid {
+  padding: 2.8rem 1.6rem 8rem 1.6rem;
+  display: grid;
+  grid-template-areas:
+    "navbar"
+    "hero"
+    "news"
+    "posts";
+  row-gap: 6.4rem;
+  column-gap: 3rem;
+
+  &__hero {
+    grid-area: hero;
+  }
+
+  &__navbar {
+    grid-area: navbar;
+    margin-bottom: -3.2rem;
+
+    @include u.breakpoint("large") {
+      margin-bottom: -1.1rem;
+    }
+  }
+
+  &__posts {
+    grid-area: posts;
+
+    @include u.breakpoint("large") {
+      margin-top: 0.7rem;
+    }
+  }
+
+  &__news {
+    grid-area: news;
+  }
+
+  @include u.breakpoint("large") {
+    padding: 8.9rem 16.5rem 12.9rem 16.5rem;
+
+    grid-template-areas:
+      "navbar navbar navbar"
+      "hero hero news"
+      "posts posts posts";
+  }
+}
